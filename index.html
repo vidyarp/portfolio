@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakersHub - Mechanical Engineering Portfolio</title>
+    <meta name="description" content="Professional mechanical engineering portfolio showcasing innovative projects and technical expertise">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: linear-gradient(to bottom right, #0f172a, #1e3a8a, #0f172a);
+            color: #f3f4f6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1152px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(30, 64, 175, 0.5);
+        }
+        
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #fb923c, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: transparent;
+            color: #d1d5db;
+            font-size: 1rem;
+        }
+        
+        .nav-btn:hover {
+            color: #fb923c;
+        }
+        
+        .nav-btn.active {
+            background: #f97316;
+            color: white;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .profile-image-wrapper {
+            position: relative;
+        }
+        
+        .profile-glow {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, #f97316, #2563eb);
+            border-radius: 1rem;
+            filter: blur(2rem);
+            opacity: 0.2;
+        }
+        
+        .profile-image {
+            position: relative;
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(249, 115, 22, 0.3);
+        }
+        
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fb923c, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        .description {
+            color: #d1d5db;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            line-height: 1.75;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-orange {
+            background: #f97316;
+            color: white;
+        }
+        
+        .btn-orange:hover {
+            background: #ea580c;
+            box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.5);
+        }
+        
+        .btn-blue {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .btn-blue:hover {
+            background: #1d4ed8;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.5);
+        }
+        
+        .skills-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #fb923c;
+        }
+        
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(30, 64, 175, 0.4);
+            border: 1px solid rgba(29, 78, 216, 0.5);
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            color: #bfdbfe;
+            transition: all 0.3s;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(30, 64, 175, 0.6);
+        }
+        
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(to right, #fb923c, #ea580c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .project-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(30, 64, 175, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .project-card:hover {
+            border-color: rgba(249, 115, 22, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(249, 115, 22, 0.1);
+        }
+        
+        .project-image-wrapper {
+            position: relative;
+            height: 16rem;
+            overflow: hidden;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #0f172a, transparent);
+            opacity: 0.6;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+            color: #fb923c;
+        }
+        
+        .project-description {
+            color: #d1d5db;
+            margin-bottom: 1rem;
+            line-height: 1.75;
+        }
+        
+        .project-section {
+            margin-bottom: 1rem;
+        }
+        
+        .project-section-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #93c5fd;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-section-text {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        
+        .project-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .project-skill-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(249, 115, 22, 0.2);
+            border: 1px solid rgba(249, 115, 22, 0.4);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            color: #fdba74;
+        }
+        
+        .funfacts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .funfacts-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .funfact-card {
+            background: linear-gradient(to bottom right, rgba(30, 41, 59, 0.8), rgba(30, 58, 138, 0.3));
+            backdrop-filter: blur(12px);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            border: 1px solid rgba(29, 78, 216, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .funfact-card:hover {
+            border-color: rgba(249, 115, 22, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(249, 115, 22, 0.1);
+        }
+        
+        .funfact-icon {
+            color: #fb923c;
+            margin-bottom: 1rem;
+            width: 2rem;
+            height: 2rem;
+        }
+        
+        .funfact-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+            color: #fb923c;
+        }
+        
+        .funfact-description {
+            color: #d1d5db;
+            line-height: 1.75;
+        }
+        
+        .connect-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(12px);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            border: 1px solid rgba(30, 64, 175, 0.5);
+            max-width: 42rem;
+            margin: 3rem auto 0;
+            text-align: center;
+        }
+        
+        .connect-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #fb923c;
+        }
+        
+        .connect-description {
+            color: #d1d5db;
+            margin-bottom: 1.5rem;
+        }
+        
+        .connect-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        footer {
+            border-top: 1px solid rgba(30, 64, 175, 0.5);
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            padding: 2rem 0;
+            text-align: center;
+            color: #9ca3af;
+        }
+        
+        .icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        
+        .icon-lg {
+            width: 2rem;
+            height: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <h1 class="logo">MakersHub</h1>
+                <div class="nav-buttons">
+                    <button class="nav-btn active" onclick="showSection('about')">About</button>
+                    <button class="nav-btn" onclick="showSection('projects')">Projects</button>
+                    <button class="nav-btn" onclick="showSection('funfacts')">Fun Facts</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="container">
+        <div class="about-grid">
+            <div class="profile-image-wrapper">
+                <div class="profile-glow"></div>
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop" alt="Profile" class="profile-image">
+            </div>
+            
+            <div>
+                <h2 class="title">Hello, I'm a Mechanical Engineer</h2>
+                <p class="description">
+                    Passionate about designing innovative solutions that bridge the gap between concept and reality. 
+                    I specialize in automation, robotics, and sustainable engineering practices.
+                </p>
+                <p class="description">
+                    With a strong foundation in CAD design and hands-on prototyping, I bring ideas to life through 
+                    creative problem-solving and meticulous attention to detail.
+                </p>
+
+                <div class="contact-buttons">
+                    <a href="mailto:your.email@example.com" class="btn btn-orange">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        Email Me
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn btn-blue">
+                        <svg class="icon" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+
+                <div>
+                    <h3 class="skills-title">Technical Skills</h3>
+                    <div class="skills-grid">
+                        <span class="skill-tag">CAD Design</span>
+                        <span class="skill-tag">SolidWorks</span>
+                        <span class="skill-tag">AutoCAD</span>
+                        <span class="skill-tag">ANSYS</span>
+                        <span class="skill-tag">Manufacturing</span>
+                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag">3D Printing</span>
+                        <span class="skill-tag">Project Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="container hidden">
+        <h2 class="section-title">Engineering Experience</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="./project1-acsi.jpg" alt="ACSI Flight Stack Redesign" class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">ACSI Flight Stack Redesign</h3>
+                    <p class="project-description">
+                        Redesigned and optimized the flight stack for autonomous aircraft control systems at Virginia Tech's Advanced Control Systems Lab. Focused on improving system efficiency and long-term durability through innovative design solutions.
+                    </p>
+                    <div class="project-section">
+                        <h4 class="project-section-title">Impact:</h4>
+                        <p class="project-section-text">Improved flight stack efficiency and long-term durability while reducing weight and complexity</p>
+                    </div>
+                    <div class="project-section">
+                        <h4 class="project-section-title">Outcome:</h4>
+                        <p class="project-section-text">Successfully presented at research symposium, integrated into ongoing autonomous aircraft research</p>
+                    </div>
+                    <div class="project-skills">
+                        <span class="project-skill-tag">Drone Design</span>
+                        <span class="project-skill-tag">Control Systems</span>
+                        <span class="project-skill-tag">CAD</span>
+                        <span class="project-skill-tag">Research</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop" alt="Robotic Gripper Design" class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Robotic Gripper Design</h3>
+                    <p class="project-description">
+                        Developed a custom robotic gripper mechanism for handling delicate components in electronics assembly.
+                    </p>
+                    <div class="project-section">
+                        <h4 class="project-section-title">Impact:</h4>
+                        <p class="project-section-text">Reduced component damage by 75% and improved handling speed by 30%</p>
+                    </div>
+                    <div class="project-section">
+                        <h4 class="project-section-title">Outcome:</h4>
+                        <p class="project-section-text">Patent pending, adopted by 3 manufacturing facilities</p>
+                    </div>
+                    <div class="project-skills">
+                        <span class="project-skill-tag">Robotics</span>
+                        <span class="project-skill-tag">SolidWorks</span>
+                        <span class="project-skill-tag">Prototyping</span>
+                        <span class="project-skill-tag">Testing</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop" alt="Thermal Management System" class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Thermal Management System</h3>
+                    <p class="project-description">
+                        Engineered an advanced thermal management solution for high-performance computing systems.
+                    </p>
+                    <div class="project-section">
+                        <h4 class="project-section-title">Impact:</h4>
+                        <p class="project-section-text">Improved cooling efficiency by 50% while reducing energy consumption by 25%</p>
+                    </div>
+                    <div class="project-section">
+                        <h4 class="project-section-title">Outcome:</h4>
+                        <p class="project-section-text">Implemented in data center operations, saving $100K annually in cooling costs</p>
+                    </div>
+                    <div class="project-skills">
+                        <span class="project-skill-tag">ANSYS</span>
+                        <span class="project-skill-tag">Thermal Analysis</span>
+                        <span class="project-skill-tag">CFD</span>
+                        <span class="project-skill-tag">Design Optimization</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop" alt="Sustainable Packaging Solution" class="project-image">
+                    <div class="project-overlay"></div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Sustainable Packaging Solution</h3>
+                    <p class="project-description">
+                        Created an innovative eco-friendly packaging system using biodegradable materials and optimized geometry.
+                    </p>
+                    <div class="project-section">
+                        <h4 class="project-section-title">Impact:</h4>
+                        <p class="project-section-text">Reduced packaging waste by 80% and cut material costs by 35%</p>
+                    </div>
+                    <div class="project-section">
+                        <h4 class="project-section-title">Outcome:</h4>
+                        <p class="project-section-text">Awarded "Green Innovation Award", scaled to 10,000+ units monthly</p>
+                    </div>
+                    <div class="project-skills">
+                        <span class="project-skill-tag">Sustainable Design</span>
+                        <span class="project-skill-tag">Material Science</span>
+                        <span class="project-skill-tag">3D Printing</span>
+                        <span class="project-skill-tag">Cost Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="funfacts" class="container hidden">
+        <h2 class="section-title">Beyond Engineering</h2>
+        <div class="funfacts-grid">
+            <div class="funfact-card">
+                <svg class="icon-lg funfact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+                <h3 class="funfact-title">Music Enthusiast</h3>
+                <p class="funfact-description">
+                    Play guitar and piano in my free time. Love jamming to classic rock and jazz.
+                </p>
+            </div>
+            
+            <div class="funfact-card">
+                <svg class="icon-lg funfact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                <h3 class="funfact-title">LEGO Architect</h3>
+                <p class="funfact-description">
+                    Build complex LEGO Technic models and custom MOCs. Current project: working suspension system.
+                </p>
+            </div>
+        </div>
+        
+        <div class="connect-card">
+            <h3 class="connect-title">Let's Connect!</h3>
+            <p class="connect-description">
+                Whether it's discussing engineering projects, sharing music recommendations, 
+                or talking about the latest LEGO sets, I'd love to hear from you.
+            </p>
+            <div class="connect-buttons">
+                <a href="mailto:your.email@example.com" class="btn btn-orange">
+                    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>© 2024 MakersHub. Built with passion for engineering and innovation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionName) {
+            document.getElementById('about').classList.add('hidden');
+            document.getElementById('projects').classList.add('hidden');
+            document.getElementById('funfacts').classList.add('hidden');
+            
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(sectionName).classList.remove('hidden');
+            
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
